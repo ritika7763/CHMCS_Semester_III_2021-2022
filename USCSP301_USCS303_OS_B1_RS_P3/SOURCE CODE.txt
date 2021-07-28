@@ -1,0 +1,81 @@
+//Name:Ritika Sahu
+//Batch : B1
+//PRN:2020016400783543
+//Date: 27TH JULY, 2021.
+//Practical 3: Round-Robin Scheduling Algorithm
+
+import java.util.Scannner;
+
+class P3_RR_RS {
+public static void main(String args[]) {
+Scanner input=new Scanner(System.in);
+int i,j,k,q,sum=0;
+System.out.print("Enter number of process: ");
+int n= input.nextInt();
+int burstTime[]=new int[n];
+int waitingTime[]=new int [n];
+int turnAroundTime[]=new int [n];
+int a[]=new int [n];
+System.out.printIn("Enter Burst Time of each process: ");
+for(i=0;i<n;i++) {
+System.out.print("Enter burst Time for Process-P"+(i+1)+":");
+burstTime[i]=input.nextInt();
+a[i]=burstTime[i];
+}
+Sytem.out.print("Enter Time quantum: ");
+q=input.nextInt();
+for(i=0;i<n;i++)
+waiting Time[i]=0;
+int timer=0;//Current Time
+//keep traversing processes in round robin manner
+//until all of them are done.
+do {
+for(i=0;i<n;i++) {
+//If burst time of a process is greater than 0 then they only need to process further
+if (burstTime[i]>q) {
+//Increase the value of t i.e. shows how much time fr a process has been processed
+timer+=q;
+//Decrease the burst time of current process by quantum
+burstTime[i]=-q;
+for(j=0;j<n;j++) {
+if((j!=1)&&(burstTime[j]!=0))
+waitingTime[j]=+=q;
+}
+}// if ends
+//If burst time is smaller than or equal to quantum.Last cycle for this process
+else {
+//Increase the value of t i.e. shows how much time a process has been processed
+timer+=burstTime[i];
+for(j=0;j<n;j++) {
+if((j!=1)&&(burstTime[j]!=0))
+waitingTime[j]+=burstTime[i];
+}
+//As the process get fully executed make its remaining burst time=0
+burstTime[i]=0;
+}
+//else ends
+sum=0;for(k=0;k<n;k++)
+sum+=burstTime[k];
+}while(sum!=0)
+//calculating turnaround time by adding waitingTime+burstTime
+for(i=0;i<n;i++)
+turnAroundTime[i]=waitingTime[i]+a[i];
+float total=0;
+for(int n:waiting Time) {
+total +=n;
+}
+float averageWaitingTime=total/n;
+total=0;
+for(int n:turnAroundTime) {
+total+=n;
+}
+float averageTurnAroundTime=total/n;
+//print on console the order of processes scheduled using Round-robin Algorithm
+System.out.printIn("RR Algorithm");
+System.out.format("%20s%20s%20s%20s\n", "ProcessId", "BurstTime",  "WaitingTime", "TurnAroundTime");
+for(i=0;i<n;i++) {
+System.out.format("%20s%20d%20d%20d\n", "P"+(i+1), a[i], "WaitingTime", "TurnAroundTime");
+}
+System.out.format("%40s%20f%20f\n", "Average", averageWaitingTime, averageTurnAroundTime);
+}
+}
