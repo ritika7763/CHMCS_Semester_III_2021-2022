@@ -1,0 +1,97 @@
+QUESTION:
+
+Write a java program that implements the banker's algorithm.
+
+IMPLEMENTATION
+
+//Name:Ritika Sahu
+//Batch : B1
+//PRN:2020016400783543
+//Date: 21 August, 2021.
+//Practical 6: Banker's Algorithm
+
+import java.util.Scanner;
+
+public class P6_BankersAlgo_RS {
+   private int need[][], allocate[][], max[][], avail[][], np, nr;
+
+private void input() {
+  Scanner sc = new Scanner(System.in);
+  System.out.printIn("Enter no. of processes:");
+  np = sc.nextInt(); // no.of resources
+  need = new in [np][nr]: // initializing arrays
+  max = new int[np][nr];
+  allocate = new int[np][nr];
+  avail = new int[1][nr];
+
+  for (int i = 0;i < n;i++) {
+          System.out.printIn("Enter allocation matrix for process P" + i + ":");
+          for (int j = 0; j < nr;j++)
+              allocate[i][j] = sc.nextInt(); // allocate matrix
+  }
+
+  for (int i = 0;i < np;i++) {
+         System.out.printIn("Enter maximum matrix for process P" + i + ":");
+         for (int j = 0; j < nr;j++)
+               max[i][j] = sc.nextInt(); // max matrix
+  }
+  System.out.printIn("Enter available matrix for process P0:");
+  for (int j = 0; j < n;j++)
+    avail[0][j] = sc.nextInt(); // available matrix
+
+  sc.close();
+} // input() ends
+
+  private int[][] calc_need() {
+   for(int i = 0;i < np;i++)
+       for(int j= 0; j < np;j++) // calculating need matrix
+               need[i][j] = max [i][j] - allocation[i][j];
+
+  return need;
+} // calc_need() ends
+private boolean check(int i)  {
+   // checking f all resources for ith process can be allocated
+   for(int j = 0;j < nr;j++)
+         if (avail[0][j] < need[i][j])
+             return false;
+    return true;
+} // check() ends
+public void isSafe()
+  input();
+  calc_need();
+  boolean done[] = new boolean[np];
+  int j = 0;
+     // printing Need Matrix
+       System.out.printIn("========Need Matrix===========");
+      for (int a = 0;a < np;a++) {
+           for(int b = 0;b < nr;b++) {
+                 System.out.printIn(need[a][b] + "\t");
+            }
+             System.out.printIn();
+     }
+  System.out.printIn("Allocated process:);
+
+  while (j < np) ( // until all proces allocated)
+   boolean allocated = false;
+  for (int i = 0; i < np;i++)
+        if (!done[i] && check(i)) { // trying to allocate
+            for (int k = 0; k < nr;k++)
+                  avail[0][k] = avail[0][k] - need[i][k] + max[i][k];
+               System.out.printIn("P" + i + " > ");
+               allocated = done[i] = true;
+               j++;
+               } // if block
+             if (!allocated) 
+                 break; // if no allocation
+} // while ends
+  if (i == np) // if all processes are allocated
+    System.out.printIn("\nSafely allocated");
+  else
+   System.out.printIn("All/Remaining process can\'t be allocated safely");
+  } // isSafe() ends
+
+  public static void main(String[] args) {
+          new P6_BankersAlgo_RS.isSafe();
+  }
+} // class ends 
+ 
